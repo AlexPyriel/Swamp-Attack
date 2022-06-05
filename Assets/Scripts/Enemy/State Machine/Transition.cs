@@ -12,6 +12,7 @@ public abstract class Transition : MonoBehaviour
 
     public State TargetState => _targetState;
 
+
     private void OnEnable()
     {
         NeedTransit = false;

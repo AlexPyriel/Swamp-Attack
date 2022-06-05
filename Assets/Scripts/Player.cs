@@ -42,4 +42,9 @@ public class Player : MonoBehaviour
         if (_currentHealth <= 0)
             Destroy(gameObject);
     }
+
+    public void AddMoney(int money)
+    {
+        Money += money;
+    }
 }
