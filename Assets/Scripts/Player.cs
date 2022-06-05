@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Animator))]
 public class Player : MonoBehaviour
@@ -14,6 +15,8 @@ public class Player : MonoBehaviour
     private Animator _animator;
 
     public int Money { get; private set; }
+
+    public event UnityAction<int, int> HealtChanged;
 
     private void Start()
     {
@@ -30,14 +33,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnEnemyDied(int reward)
-    {
-        Money += reward;
-    }
-
     public void ApplyDamage(int damage)
     {
         _currentHealth -= damage;
+
+        HealtChanged?.Invoke(_currentHealth, _health);
 
         if (_currentHealth <= 0)
             Destroy(gameObject);
