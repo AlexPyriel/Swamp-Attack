@@ -48,7 +48,9 @@ public class Spawner : MonoBehaviour
 
     private void InstantiateEnemy()
     {
-        Enemy enemy = Instantiate(_currentWave.Template, _spawnPoint.position, _spawnPoint.rotation, _spawnPoint).GetComponent<Enemy>();
+        GameObject template = _currentWave.Templates[Random.Range(0, _currentWave.Templates.Count)];
+        Enemy enemy = Instantiate(template, _spawnPoint.position, _spawnPoint.rotation, _spawnPoint).GetComponent<Enemy>();
+        //Enemy enemy = Instantiate(_currentWave.Templates, _spawnPoint.position, _spawnPoint.rotation, _spawnPoint).GetComponent<Enemy>();
         enemy.Init(_player);
         enemy.Dying += OnEnemyDying;
     }
@@ -76,7 +78,7 @@ public class Spawner : MonoBehaviour
 [System.Serializable]
 public class Wave
 {
-    public GameObject Template;
+    public List<GameObject> Templates;
     public float Delay;
     public int Count;
 }
