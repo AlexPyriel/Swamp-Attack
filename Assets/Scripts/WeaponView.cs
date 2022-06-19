@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -41,6 +39,7 @@ public class WeaponView : MonoBehaviour
         _label.text = weapon.Label;
         _price.text = weapon.Price.ToString();
         _icon.sprite = weapon.Icon;
+        _sellButton.interactable = !weapon.IsBought;
     }
 
     private void OnButtonClick()
